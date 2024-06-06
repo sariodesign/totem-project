@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Totem project - Test</title>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- Import the component -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+    <!-- Use it like any other HTML element -->
+    <model-viewer alt="Test glb" src="./render.glb" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
