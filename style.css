@@ -14,6 +14,7 @@ body {
   color: #ffffff;
   font-family: var(--body-font);
   margin: 0;
+  padding: 0 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,7 +27,16 @@ a {
 }
 
 .header {
+  align-items: center;
+  column-gap: 32px;
+  display: flex;
+  line-height: 1;
   padding: 32px 0;
+
+  svg {
+    fill: #ffffff;
+    vertical-align: bottom;
+  }
 }
 
 .full-height-screen {
@@ -50,4 +60,10 @@ a {
   padding: 32px 0;
   font-size: 24px;
   line-height: 32px;
+}
+
+model-viewer {
+  width: 85vw;
+  height: 85vh;
+  margin: 0 auto;
 }
