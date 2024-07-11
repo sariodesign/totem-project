@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
 
 let scene, camera, renderer, controls;
 
@@ -25,40 +24,15 @@ function init() {
     controls.dampingFactor = 0.25;
     controls.screenSpacePanning = false;
 
-    controls.minPolarAngle = Math.PI / 2; // Blocca la rotazione verticale
-    controls.maxPolarAngle = Math.PI / 2; // Blocca la rotazione verticale
-
-    // Lighting
-    /* const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight); */
-
-    // Adding multiple directional lights
-    /* const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight1.position.set(2, 2, 2);
-    scene.add(directionalLight1);
-
-    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2.position.set(-2, -2, -2);
-    scene.add(directionalLight2);
-
-    const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight3.position.set(-2, 2, -2);
-    scene.add(directionalLight3);
-
-    const directionalLight4 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight4.position.set(2, -2, 2);
-    scene.add(directionalLight4);
-
-    // Point Light
-    const pointLight = new THREE.PointLight(0xffffff, 0.5, 13);
-    pointLight.position.set(1, 1.5, 1);
-    scene.add(pointLight); */
+    // controls.minPolarAngle = Math.PI / 2; // Blocca la rotazione verticale
+    // controls.maxPolarAngle = Math.PI / 2; // Blocca la rotazione verticale
 
     new RGBELoader()
         .setPath('/') // Modifica questo percorso
-        .load('background.hdr', function(texture) {
+        .load('background-light.hdr', function(texture) {
             texture.mapping = THREE.EquirectangularReflectionMapping;
-            scene.background = texture;
+            //scene.background = texture;
+            scene.background = new THREE.Color(0x191919);
             scene.environment = texture;
 
             // GLTF Loader
