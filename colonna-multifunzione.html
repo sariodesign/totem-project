@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Colonna multifunzione - Fiera di Parma | Totem project</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Import the component -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <script defer type="module" src="src/app.js"></script>
 </head>
 <body>
   <header class="header">
@@ -17,10 +16,15 @@
     </a>
     <h1>Colonna multifunzione</h1>
   </header>
-  <main>
+  <main class="wrap">
+		
+    <div class="dropzone">
+      
+    </div>
+    <div class="spinner"></div>
 
     <!-- Use it like any other HTML element -->
-    <model-viewer alt="Test glb" src="./render/colonnina-ebike.glb" shadow-intensity="1" camera-controls touch-action="pan-y" environment-image="neutral" skybox-image="./render/studio_small_03_2k.hdr"></model-viewer>
+    <!-- <model-viewer alt="Test glb" src="./render/colonnina-ebike.glb" shadow-intensity="1" camera-controls touch-action="pan-y" environment-image="neutral" skybox-image="./render/studio_small_03_2k.hdr"></model-viewer> -->
   </main>
 </body>
 </html>
