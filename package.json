@@ -22,7 +22,6 @@
 		"build": "vite build",
 		"clean": "rimraf dist/**",
 		"test": "node test/gen_test.js",
-		"deploy": "npm run build && vercel --local-config vercel.json --prod",
 		"postversion": "git push && git push --tags"
 	},
 	"dependencies": {

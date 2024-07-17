@@ -100,11 +100,17 @@ export class Viewer {
 		this.scene = new Scene();
 		this.scene.background = this.backgroundColor;
 
-		const fov = options.preset === Preset.ASSET_GENERATOR ? (0.8 * 180) / Math.PI : 60;
+		//const fov = options.preset === Preset.ASSET_GENERATOR ? (0.8 * 180) / Math.PI : 60;
+		const fov = options.preset === Preset.ASSET_GENERATOR ? (0.8 * 180) / Math.PI : 50;
 		const aspect = el.clientWidth / el.clientHeight;
 		this.defaultCamera = new PerspectiveCamera(fov, aspect, 0.01, 1000);
+		this.defaultCamera.position.z = 1; 
+		this.defaultCamera.updateProjectionMatrix();  // Aggiorna la matrice di proiezione
+
 		this.activeCamera = this.defaultCamera;
 		this.scene.add(this.defaultCamera);
+
+		this.defaultCamera.position.z = 5; 
 
 		this.renderer = window.renderer = new WebGLRenderer({ antialias: true });
 		this.renderer.setClearColor(0xcccccc);
@@ -249,7 +255,7 @@ export class Viewer {
 		object.updateMatrixWorld(); // donmccurdy/three-gltf-viewer#330
 
 		const box = new Box3().setFromObject(object);
-		const size = box.getSize(new Vector3()).length();
+		const size = box.getSize(new Vector3()).length() / 5;
 		const center = box.getCenter(new Vector3());
 
 		this.controls.reset();
@@ -271,7 +277,7 @@ export class Viewer {
 			this.defaultCamera.position.copy(center);
 			this.defaultCamera.position.x += size / 2.0;
 			this.defaultCamera.position.y += size / 5.0;
-			this.defaultCamera.position.z += size / 2.0;
+			this.defaultCamera.position.z += size / 1.0;
 			this.defaultCamera.lookAt(center);
 		}
 
