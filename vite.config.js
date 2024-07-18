@@ -10,8 +10,8 @@ export default defineConfig({
         "camper-service": resolve(__dirname, 'camper-service/index.html'),
         "camper-service/colonnina-multifunzione": resolve(__dirname, 'camper-service/colonnina-multifunzione/index.html'),
         "camper-service/piatto-di-scarico": resolve(__dirname, 'camper-service/piatto-di-scarico/index.html'),
-        "camper-service/ricarica-elettrica-camper": resolve(__dirname, 'camper-service/ricarica-elettrica-camper/index.html'),
-        "camper-service/ricarica-elettrica-ebike": resolve(__dirname, 'camper-service/ricarica-elettrica-ebike/index.html')
+        "ricarica-elettrica-camper": resolve(__dirname, 'ricarica-elettrica-camper/index.html'),
+        "ricarica-elettrica-ebike": resolve(__dirname, 'ricarica-elettrica-ebike/index.html')
       },
     },
   },
