@@ -596,7 +596,7 @@ export class Viewer {
 		const guiWrap = document.createElement('div');
 		this.el.appendChild(guiWrap);
 		guiWrap.classList.add('gui-wrap');
-		guiWrap.appendChild(gui.domElement);
+		//guiWrap.appendChild(gui.domElement);
 		gui.open();
 	}
 

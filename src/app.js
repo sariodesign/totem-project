@@ -4,6 +4,12 @@ import { SimpleDropzone } from 'simple-dropzone';
 import { Validator } from './validator.js';
 import queryString from 'query-string';
 
+const url = window.location.href
+const parts = url.split('/').filter(part => part.length > 0);
+const lastPart = parts[parts.length - 1];
+
+console.log('Last part: ', lastPart)
+
 window.VIEWER = {};
 
 if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
@@ -35,12 +41,9 @@ class App {
 		this.inputEl = el.querySelector('#file-input');
 		this.validator = new Validator(el);
 
-		
-
-		//this.createDropzone();
 		this.hideSpinner();
 
-		this.loadModelFromURL('/colonnina-cwc.glb')
+		this.loadModelFromURL(`/${lastPart}.glb`)
 
 		const options = this.options;
 
