@@ -52,9 +52,12 @@ const Preset = { ASSET_GENERATOR: 'assetgenerator' };
 Cache.enabled = true;
 
 export class Viewer {
-	constructor(el, options) {
+	constructor(el, options, customZoom = false, customZoomValue = null, customBg = null) {
 		this.el = el;
 		this.options = options;
+		this.customZoom = customZoom;
+		this.customZoomValue = customZoomValue;
+		this.customBg = customBg;
 
 		this.lights = [];
 		this.content = null;
@@ -84,7 +87,7 @@ export class Viewer {
 			ambientColor: '#FFFFFF',
 			directIntensity: 0.8 * Math.PI, // TODO(#116)
 			directColor: '#FFFFFF',
-			bgColor: '#191919',
+			bgColor: this.customBg ? this.customBg : '#191919',
 
 			pointSize: 1.0,
 		};
@@ -274,11 +277,19 @@ export class Viewer {
 			this.defaultCamera.position.fromArray(this.options.cameraPosition);
 			this.defaultCamera.lookAt(new Vector3());
 		} else {
-			this.defaultCamera.position.copy(center);
-			this.defaultCamera.position.x += size / 2.0;
-			this.defaultCamera.position.y += size / 5.0;
-			this.defaultCamera.position.z += size / 1.0;
-			this.defaultCamera.lookAt(center);
+			if(this.customZoom){
+				this.defaultCamera.position.copy(center);
+				this.defaultCamera.position.x += this.customZoomValue.x;
+				this.defaultCamera.position.y += this.customZoomValue.y;
+				this.defaultCamera.position.z += this.customZoomValue.z;
+				this.defaultCamera.look
+			} else {
+				this.defaultCamera.position.copy(center);
+				this.defaultCamera.position.x += size / 2.0;
+				this.defaultCamera.position.y += size / 5.0;
+				this.defaultCamera.position.z += size / 1.0;
+				this.defaultCamera.lookAt(center);
+			}
 		}
 
 		this.setCamera(DEFAULT_CAMERA);
@@ -316,9 +327,9 @@ export class Viewer {
 	}
 
 	printGraph(node) {
-		console.group(' <' + node.type + '> ' + node.name);
+		//group(' <' + node.type + '> ' + node.namconsole.e);
 		node.children.forEach((child) => this.printGraph(child));
-		console.groupEnd();
+		//console.groupEnd();
 	}
 
 	/**

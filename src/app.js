@@ -3,10 +3,43 @@ import { Viewer } from './viewer.js';
 import { SimpleDropzone } from 'simple-dropzone';
 import { Validator } from './validator.js';
 import queryString from 'query-string';
+import { cameraPosition } from 'three/examples/jsm/nodes/Nodes.js';
 
 const url = window.location.href
 const parts = url.split('/').filter(part => part.length > 0);
 const lastPart = parts[parts.length - 1];
+
+let customZoomValue;
+let customZoom;
+let customBg;
+
+if(lastPart === 'piatto-di-scarico') {
+	customZoom = true
+	customZoomValue = {
+		x: 1.5,
+		y: 1,
+		z: 1.5
+	}
+}
+
+if(lastPart === 'ricarica-elettrica-ebike') {
+	customZoom = true
+	customZoomValue = {
+		x: 0.7794,
+		y: 0.03117,
+		z: 0.15588
+	}
+}
+
+if(lastPart === 'frangivista-differenziata') {
+	customZoom = true
+	customBg = '#999999'
+	customZoomValue = {
+		x:  1.5,
+		y:  1,
+		z:  2
+	}
+}
 
 console.log('Last part: ', lastPart)
 
@@ -17,7 +50,6 @@ if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
 } else if (!WebGL.isWebGLAvailable()) {
 	console.error('WebGL is not supported in this browser.');
 }
-
 
 class App {
 	/**
@@ -30,7 +62,7 @@ class App {
 			kiosk: Boolean(hash.kiosk),
 			model: hash.model || '',
 			preset: hash.preset || '',
-			cameraPosition: hash.cameraPosition ? hash.cameraPosition.split(',').map(Number) : null,
+			cameraPosition: hash.cameraPosition ? hash.cameraPosition.split(',').map(Number) : null
 		};
 
 		this.el = el;
@@ -93,7 +125,7 @@ class App {
 		this.viewerEl.classList.add('viewer');
 		this.dropEl.innerHTML = '';
 		this.dropEl.appendChild(this.viewerEl);
-		this.viewer = new Viewer(this.viewerEl, this.options);
+		this.viewer = new Viewer(this.viewerEl, this.options, customZoom, customZoomValue, customBg);
 		return this.viewer;
 	}
 
@@ -126,9 +158,9 @@ class App {
 	 * @param  {Map<string, File>} fileMap
 	 */
 	view(rootFile, rootPath, fileMap) {
-		console.log('rootFile: ', rootFile)
+		/* console.log('rootFile: ', rootFile)
 		console.log('rootPath: ', rootPath)
-		console.log('fileMap: ', fileMap)
+		console.log('fileMap: ', fileMap) */
 		if (this.viewer) this.viewer.clear();
 
 		const viewer = this.viewer || this.createViewer();
