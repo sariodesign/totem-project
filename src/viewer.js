@@ -262,6 +262,9 @@ export class Viewer {
 		const center = box.getCenter(new Vector3());
 
 		this.controls.reset();
+		console.log('x', size / 2.0)
+		console.log('y', size / 5.0)
+		console.log('z', size / 1.0)
 
 		object.position.x -= center.x;
 		object.position.y -= center.y;

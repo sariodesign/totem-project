@@ -31,11 +31,20 @@ if(lastPart === 'ricarica-elettrica-ebike') {
 	}
 }
 
+if(lastPart === 'controllo-accessi') {
+	customZoom = true
+	customZoomValue = {
+		x:  1,
+		y:  1,
+		z:  375
+	}
+}
+
 if(lastPart === 'frangivista-differenziata') {
 	customZoom = true
 	customBg = '#999999'
 	customZoomValue = {
-		x:  1.5,
+		x:  2.75,
 		y:  1,
 		z:  2
 	}
